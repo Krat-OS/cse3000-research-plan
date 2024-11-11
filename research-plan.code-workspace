@@ -1,0 +1,35 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"latex-workshop.latex.tools": [
+			{
+				"name": "pdflatex",
+				"command": "pdflatex",
+				"args": [
+					"-synctex=1",
+					"-interaction=nonstopmode",
+					"-file-line-error",
+					"-output-directory=./doc",
+					"%DOC%"
+				]
+			},
+			{
+				"name": "biber",
+				"command": "biber",
+				"args": [
+					"doc/%DOCFILE%"
+				]
+			},
+		],
+		"latex-workshop.latex.recipes": [
+			{
+				"name": "pdflatex -> biber -> pdflatex*2",
+				"tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
+			}
+		]		
+	},
+}
