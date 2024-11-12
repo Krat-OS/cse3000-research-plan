@@ -3,29 +3,200 @@
 \usepackage[latin9]{inputenc}
 \usepackage{geometry}
 \usepackage{url}
-\usepackage{babel}
-\usepackage{csquotes}
+\usepackage[english]{babel}
+\usepackage[autostyle=true,english=american]{csquotes}
+\MakeOuterQuote{"}
 \usepackage[style=ieee, sorting=none]{biblatex}
+
+
 \addbibresource{references.bib}
 \geometry{verbose,tmargin=3cm,bmargin=3cm,lmargin=3cm,rmargin=3cm}
 
 \title{
     Research Plan for CSE3000 Research Project\\
-    {\Large \textit{I don't have title yet!}}
+    {\Large \textit{Draft}}
 }
 \author{Cristian Soare}
 
 \begin{document}
 \maketitle
 
-\section*{Background of the research}
+This short document presents an initial draft research plan, with emphasis on the first week of the project. Subsequent versions will detail a more comprehensive timeline spanning the complete ten-week research period.
+
+\section*{Research Context}
+
+The project's research centers on testing and debugging tools for the Boolean Satisfiability Problem (SAT), an NP-hard problem that involves determining whether a satisfying assignment exists for a given Boolean formula \parencite{Biere2009}. Specifically, it will be focusing on applying fuzzing and delta-debugging techniques to Model Counting (\#SAT). Model Counting differs from SAT in that it finds out the number of unique assignments, rather than just determining if a satisfying assignment exists. There are also different variants of model counting: weighted, projected and weighted projected (WMC/PMC/WPMC) \parencite{Biere2009}. Regardless of how these model counters are implemented, they are usually used for validating the correctness of hardware and software systems \parencite{Duenas2017,Latour2022,Baluta2019}. Therefore, it is reasonable to expect a high level of correctness and efficiency from these tools. However, that might not always be the case. This is why testing and debugging tools are essential for the developers building these solvers, ensuring reliability and robustness.
 
 \section*{Research Question}
 
-\section*{Method}
-\textcite{dummy2023}
+The specific research question is not yet known for this topic as the domain of research is still in the early stages of exploration. However, the general research question is: "How can fuzzing/delta-debugging be effectively applied to (W/P/WP)MC to find bugs related to memory/concurrency/overflow?" This question will be refined this week as my research and understanding progresses and more information is gathered.
 
-\section*{Planning of the research project}
+
+\section*{First Week Plan}
+
+\subsection*{SAT, \#SAT}
+
+The initial phase of this research project (particularly in the first week) focuses on understanding the practical applications of model counters and identifying potential issues arising from their incorrect behavior. This exploration will contribute to refining the research subject. Several preliminary papers related to this topic are mentioned in the Project Proposal, along with additional sources discovered during initial research (\textcite{Shaw2024}). Important related works include \textcite{Biere2009} and \textcite{Kullmann2009}, which provide the overall big picture on the SAT problem, including dedicated sections on \#SAT. Further sources need to be identified and analyzed to get a deeper understanding.
+
+\subsection*{SATZilla}
+
+SATZilla is a well-known project that aims to improve the performance of SAT solvers by using machine learning techniques \parencite{Xu2008}. SATZilla's portfolio-based approach to SAT solving provides valuable insights for fuzzing model counters in several ways:
+
+\begin{itemize}
+    \item Feature Analysis: Just as SATZilla analyzes SAT instance features to select appropriate solvers, fuzzing strategies can be tailored based on model counter characteristics
+    
+    \item Performance Patterns: SATZilla's performance prediction methods can guide the development of test case generators that target specific performance-critical scenarios
+    
+    \item Problem Classification: The way SATZilla categorizes SAT problems can inform how we categorize and generate test cases for different types of model counting problems
+    
+    \item Resource Management: SATZilla's techniques for managing computational resources during solver selection can inspire efficient resource allocation in fuzzing campaigns
+\end{itemize}
+
+\subsection*{Fuzzing and Delta-Debugging}
+
+The next part of my work involves diving deep into fuzzing and delta-debugging techniques. These are powerful tools that I'll need to understand for finding software bugs in this project. Zeller's \parencite{Zeller2023, Zeller2024} textbooks have provided me with solid groundwork, though they're mainly focused on general use cases. I'll need to determine how these techniques can be adapted specifically for model counters, which is made challenging by their complex nature.
+
+\subsection*{SharpVelvet}
+
+An additional key task I've identified for my first week is getting familiar with the SharpVelvet project - understanding its structure and the format needed for the generator/fuzzer to effectively test the model counter. This understanding is crucial since it will reveal to me the model counter's limitations and how the fuzzer should be adapted. My first week will be spent running the SharpVelvet generator and fuzzer across different environments (Local, DefltBlue), generating and analyzing the results of these test runs, and understanding the underlying codebase.\\
+
+
+That being said, I acknowledge that the initial articles and books I've found aren't enough to grasp the big picture or narrow down my possible research topic, so it's important for me to conduct a broader literature review to find real-world examples of fuzzing/delta-debugging being applied to model counters. This should help me identify which approaches might be most promising for my specific case. To do this, I'll first create a concept map of the entire field, then I'll identify the most important concepts and generate queries.
+
+\section*{Timeline}
+
+Week 1:
+\begin{itemize}
+    \item Literature and Background Study:
+    \begin{itemize}
+        \item Understand the SAT, \#SAT problems.
+        \item Explore the SATZilla project.
+        \item Learn about fuzzing and delta-debugging techniques.
+        \item Initial Literature study.
+        \item Conduct broader literature review.
+    \end{itemize}
+    
+    \item Project Familiarization:
+    \begin{itemize}
+        \item Become familiar with the SharpVelvet project.
+        \item Get SharpVelvet running on local environment and DefltBlue.
+        \item Create concept map of the field.
+    \end{itemize}
+    
+    \item Research Direction:
+    \begin{itemize}
+        \item Identify potential research directions.
+        \item Formulate General Research Question.
+        \item Formulate sub-questions.
+        \item Generate queries for related work.
+    \end{itemize}
+    
+    \item Administrative:
+    \begin{itemize}
+        \item Course Assignments: Draft Research Plan, Final Research Plan.
+        \item Meet with supervisor for feedback and discussion.
+    \end{itemize}
+\end{itemize}
+
+Week 2:
+\begin{itemize}
+    \item Literature and Background Study:
+    \begin{itemize}
+        \item Continue Literature study based on research question.
+        \item Refine queries for related work.
+    \end{itemize}
+
+    \item Writing:
+    \begin{itemize}
+        \item Start writing Introduction and Related Work sections for ACS Assignment 1.
+    \end{itemize}
+
+    \item Administrative:
+    \begin{itemize}
+        \item Course Assignments: Research Plan Presentation.
+        \item Meet with supervisor for feedback on final research plan and Presentation.
+    \end{itemize}
+\end{itemize}
+
+Week 3-4:
+\begin{itemize}
+    \item Research Activities:
+    \begin{itemize}
+        \item Continue literature study and research.
+        \item Work on the methodology and research design.
+        \item Test research ideas in SharpVelvet.
+        \item Document findings and results.
+    \end{itemize}
+    
+    \item Administrative:
+    \begin{itemize}
+        \item Weekly meetings with supervisor.
+        \item Complete weekly Responsible Research Sections.
+        \item Plan Final Presentation.
+        \item ACS Assignment 2a and 2b.
+    \end{itemize}
+\end{itemize}
+
+Week 5-7:
+\begin{itemize}
+    \item Implementation:
+    \begin{itemize}
+        \item Develop initial fuzzing framework for model counters
+        \item Implement specific test case generators
+        \item Create monitoring/logging system for bug detection
+    \end{itemize}
+    
+    \item Evaluation:
+    \begin{itemize}
+        \item Design evaluation metrics (e.g., code coverage, bug detection rate)
+        \item Benchmark against existing testing methods
+        \item Document performance and limitations
+    \end{itemize}
+    
+    \item Writing and Documentation:
+    \begin{itemize}
+        \item Complete ACS Assignment 3
+        \item Begin Draft Paper sections (Methodology, Implementation)
+        \item Document all discovered bugs and issues
+    \end{itemize}
+\end{itemize}
+
+Week 8-10:
+\begin{itemize}
+    \item Final Implementation:
+    \begin{itemize}
+        \item Address peer review feedback on implementation
+        \item Optimize fuzzing strategies based on results
+        \item Finalize bug reporting and reproduction steps
+    \end{itemize}
+    
+    \item Documentation and Writing:
+    \begin{itemize}
+        \item Complete Draft Paper with all results and analysis
+        \item Prepare Final Paper incorporating feedback
+        \item Create comprehensive documentation for future research
+    \end{itemize}
+    
+    \item Presentation Materials:
+    \begin{itemize}
+        \item Design research poster highlighting key findings
+        \item Prepare Final Presentation slides and demos
+        \item Create supplementary materials for reproduction
+    \end{itemize}
+    
+    \item Review Process:
+    \begin{itemize}
+        \item Participate in peer review sessions
+        \item Incorporate supervisor feedback
+        \item Final revisions and polishing
+    \end{itemize}
+\end{itemize}
+
+\section*{Conclusion}
+
+This research plan outlines the initial steps for the project, focusing on understanding the SAT, \#SAT, and SATZilla problems, as well as the fuzzing and delta-debugging techniques. The plan also includes becoming familiar with the SharpVelvet project and conducting a broader literature review to identify promising approaches for applying fuzzing to model counters. The research question will be refined this week as the project progresses, and more information is gathered.
+
+\pagebreak
 
 \printbibliography
 

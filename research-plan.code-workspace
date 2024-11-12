@@ -23,13 +23,21 @@
 				"args": [
 					"doc/%DOCFILE%"
 				]
-			},
+			}
 		],
 		"latex-workshop.latex.recipes": [
 			{
 				"name": "pdflatex -> biber -> pdflatex*2",
 				"tools": ["pdflatex", "biber", "pdflatex", "pdflatex"]
+			},
+			{
+				"name": "biber -> pdflatex -> biber -> pdflatex*2 with synctex",
+				"tools": ["biber", "pdflatex", "biber", "pdflatex", "pdflatex"]
 			}
-		]		
-	},
+		],
+		"latex-workshop.latex.outDir": "./doc",
+		"cSpell.words": [
+			"Satisfiability"
+		]
+	}
 }
